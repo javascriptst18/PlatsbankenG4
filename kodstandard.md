@@ -1,7 +1,7 @@
 # Kodstandard
 > Detta är en mall för hur ni kan sätta upp regler och ramar för hur ni ska rent kodmässigt arbeta. Ni får redigera denna.
 
-* Använd enbart double quotes "This is also a string"
+* Använd enbart double quotes `"This is also a string"`
 * Använd enbart **camelCase**
 * Använd enbart `let` och `const`
 * Kommentarer över flera rader skrivs på följande sätt:
