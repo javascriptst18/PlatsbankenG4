@@ -15,3 +15,4 @@
 ```js
 // This is a single line comment
 ```
+* Kommentera mycket!
