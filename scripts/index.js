@@ -22,15 +22,14 @@ network = {
   },
 
   async getLatestJobs() {
-    network.getLanSelectDropDown();
+    network.getLan();
     const jobs = await network.fetchJson(URL.baseUrl);
     html.displayJSON(jobs.matchningslista.matchningdata);
   },
 
-  async getLanSelectDropDown() {
-    const Lan = await network.fetchJson(URL.lanUrl);
-    for (let lan of Lan.soklista.sokdata)
-      console.log("Län: " + lan.namn + " id: " + lan.id);
+  async getLan() {
+    const result = await network.fetchJson(URL.lanUrl);
+    return result;
   }
 }
 
@@ -54,6 +53,18 @@ html = {
       </div>`;
       document.body.insertAdjacentHTML('afterBegin', jobListing);
     }
+  },
+
+  createCountySelectDropDown(){
+    const dropDownMenu = document.querySelector('#dropDown');
+    let listOfLan = network.getLan();
+    console.log(listOfLan.soklista.sokdata.length); 
+    for(let lan of listOfLan.soklista.sokdata){
+      var row = document.createElement("option");
+      row.textContent = lan.namn;
+      row.value = lan.id;
+      dropDownMenu.appendChild(row);
+  }
   }
 }
 
@@ -76,4 +87,5 @@ utility = {
 */
 window.onload = function init() {
   network.getLatestJobs();
+  html.createCountySelectDropDown();
 }
