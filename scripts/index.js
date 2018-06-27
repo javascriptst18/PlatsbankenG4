@@ -37,6 +37,7 @@ network = {
 * HTML manipulation
 */
 html = {
+  //Displays job json in html dom
   displayJSON(input) {
     for (job of input) {
       let jobListing = `
@@ -54,20 +55,27 @@ html = {
       document.body.insertAdjacentHTML('afterBegin', jobListing);
     }
   },
-
-  createCountySelectDropDown(){
+  //Fills the county select dropdown menu with items
+  async populateCountySelectDropDown() {
     const dropDownMenu = document.querySelector('#dropDown');
-    let listOfLan = network.getLan();
-    console.log(listOfLan.soklista.sokdata.length); 
-    for(let lan of listOfLan.soklista.sokdata){
+    let listOfLan = await network.getLan();
+    for (let lan of listOfLan.soklista.sokdata) {
       var row = document.createElement("option");
       row.textContent = lan.namn;
       row.value = lan.id;
       dropDownMenu.appendChild(row);
-  }
+    }
+    dropDownMenu.value = 90;
   }
 }
 
+/*
+* Event listeners
+*/
+const selectCountyDropDown = document.querySelector('#dropDown');
+selectCountyDropDown.addEventListener('change', function (target) {
+  console.log(this.value);
+});
 
 /*
 * Utility functions (formatting etc)
@@ -87,5 +95,5 @@ utility = {
 */
 window.onload = function init() {
   network.getLatestJobs();
-  html.createCountySelectDropDown();
+  html.populateCountySelectDropDown();
 }
