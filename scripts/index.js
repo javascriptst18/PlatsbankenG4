@@ -1,7 +1,7 @@
 /*
 * Variables
 */
-URL = {
+let URL = {
   baseUrl: "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&yrkesomradeid=1&sida=1&antalrader=10",
   lanUrl: "http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan"
 };
@@ -9,7 +9,7 @@ URL = {
 /*
 * Network calls
 */
-network = {
+let network = {
   //Fetches json data from input URL
   async fetchJson(url) {
     try {
@@ -36,7 +36,7 @@ network = {
 /*
 * HTML manipulation
 */
-html = {
+let html = {
   //Displays job json in html dom
   displayJSON(input) {
     for (job of input) {
@@ -80,7 +80,7 @@ selectCountyDropDown.addEventListener('change', function (target) {
 /*
 * Utility functions (formatting etc)
 */
-utility = {
+let utility = {
   //Formats inputdate from json from UTC to 'en-gb'
   formatDate(input) {
     //Converts input from string to Date and then formats date as 'en-gb' (dd/mm/yyyy)
