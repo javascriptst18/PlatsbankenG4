@@ -5,6 +5,9 @@
 font-family: 'Karla';
 */
 
+
+$mainFontFamily: "Karla", helvetica, sans-serif;
+
 *  {
 
   box-sizing: border-box;
@@ -14,18 +17,17 @@ font-family: 'Karla';
 
 
 body {
-
+color: white;
   background-color:#4169E1;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
 
 
 }
 
 h1 {
 
-  font-family: "Karla", helvetica, sans-serif;
+  font-family: $mainFontFamily;
   color: white;
   text-align: center;
 
@@ -33,13 +35,64 @@ h1 {
 
 h2{
 
-color: Hex #111E6C;
-font-family: "Karla";
+color: #111E6C;
+font-family: $mainFontFamily;
 
 }
 
+h3{
+  color: #111E6C;
+
+}
 
 .button {
 
 color: #111E6C;
+}
+
+#inputContainer {
+display: flex;
+flex-direction: column;
+min-width: 360px;
+max-width: 80%;
+margin: 0 auto;
+justify-content: left;
+//color: white;
+font-family: $mainFontFamily;
+
+
+}
+
+.jobRow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+margin-bottom: 0.8rem;
+padding-left: 20px;
+
+}
+
+.jobRowTitle  {
+  color: #111E6C;
+
+}
+
+.jobRowWorkPlace  {
+
+
+}
+
+.jobRowProfession {
+
+}
+
+.jobRowFooter {
+display: flex;
+flex-direction: row;
+
+}
+
+.jobRowCounty,
+.jobRowPublished,
+.jobRowLastApply  {
+
+
 }

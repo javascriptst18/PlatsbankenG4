@@ -52,7 +52,7 @@ html = {
             </div>
           </div>
       </div>`;
-      document.body.insertAdjacentHTML('afterBegin', jobListing);
+      document.querySelector("#inputContainer").insertAdjacentHTML('afterBegin', jobListing);
     }
   }
 }
