@@ -7,6 +7,11 @@ font-family: 'Karla';
 
 
 $mainFontFamily: "Karla", helvetica, sans-serif;
+$mainBackgroundColor:#4169E1;
+$textColorDarkerBlue: #111E6C;
+//$textColorLighterBlue:
+//$textColorGrey:
+
 
 *  {
 
@@ -31,6 +36,7 @@ h1 {
   font-family: $mainFontFamily;
   color: white;
   text-align: center;
+  font-size: 3.5rem;
 
 }
 
@@ -47,10 +53,20 @@ h3{
 
 }
 
+
+header{
+
+margin-top: 150px;
+margin-bottom: 100px;
+
+}
+
 .button {
 
 color: #111E6C;
 }
+
+/*----Input from JS-----*/
 
 #inputContainer {
 display: flex;
@@ -70,7 +86,6 @@ font-family: $mainFontFamily;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 margin-bottom: 0.8rem;
 padding: 0 20px;
-
 background-color: white;
 color: 	#808080;
 
@@ -110,3 +125,23 @@ justify-content: space-evenly;
 
 
 }
+
+/*----Links-----*/
+
+a:link {
+  color: $textColorDarkerBlue;
+}
+
+a:visited {
+  color: $textColorDarkerBlue;
+}
+
+a:hover {
+  color: $textColorDarkerBlue;
+}
+
+a:active {
+  color: $textColorDarkerBlue;
+}
+
+/*----MediaQ-----*/

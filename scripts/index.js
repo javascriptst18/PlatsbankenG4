@@ -42,7 +42,7 @@ html = {
     for (job of input) {
       let jobListing = `
       <div class="jobRow">
-          <h3 class="jobRowTitle"><a href="${job.annonsurl}">${job.annonsrubrik}</a></h3>
+          <h3 class="jobRowTitle"><a target="_blank" href="${job.annonsurl}">${job.annonsrubrik}</a></h3>
           <p class="jobRowWorkPlace"><span class="jobRowLabel">Företag:</span> ${job.arbetsplatsnamn}</p>
           <p class="jobRowProfession"><span class="jobRowLabel">Yrke:</span> ${job.yrkesbenamning}</p>
             <div class="jobRowFooter">
