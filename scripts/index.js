@@ -29,8 +29,8 @@ network = {
 
   async getLanSelectDropDown() {
     const Lan = await network.fetchJson(URL.lanUrl);
-    for(let lan of Lan.soklista.sokdata)
-    console.log("Län: "+lan.namn+" id: "+lan.id);
+    for (let lan of Lan.soklista.sokdata)
+      console.log("Län: " + lan.namn + " id: " + lan.id);
   }
 }
 
@@ -42,11 +42,14 @@ html = {
     for (job of input) {
       let jobListing = `
       <div class="jobRow">
-          <h3 class="jobTitle">${job.annonsrubrik}</h3>
-          <p class="job">${job.yrkesbenamning}</p>
-          <p class="job">${job.arbetsplatsnamn}</p>
-          <p class="job">${job.kommunnamn}</p>
-          <p class="job">Publicerades: ${utility.formatDate(job.publiceraddatum)} Sista ansökningsdag: ${utility.formatDate(job.sista_ansokningsdag)}</p>
+          <h3 class="jobRowTitle">${job.annonsrubrik}</h3>
+          <p class="jobRowWorkPlace">${job.arbetsplatsnamn}</p>
+          <p class="jobRowProfession">${job.yrkesbenamning}</p>
+            <div class="jobRowFooter">
+              <p class="jobRowCounty">${job.kommunnamn}</p>
+              <p class="jobRowPublished">Publicerades: ${utility.formatDate(job.publiceraddatum)}</p> 
+              <p class="jobRowLastApply">Sista ansökningsdag: ${utility.formatDate(job.sista_ansokningsdag)}</p>
+            </div>
           </div>
       </div>`;
       document.body.insertAdjacentHTML('afterBegin', jobListing);
