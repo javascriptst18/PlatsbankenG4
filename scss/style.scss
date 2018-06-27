@@ -43,6 +43,7 @@ font-family: $mainFontFamily;
 
 h3{
   color: #111E6C;
+  margin: 0.3em;
 
 }
 
@@ -62,38 +63,50 @@ justify-content: left;
 font-family: $mainFontFamily;
 
 
+
 }
 
 .jobRow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 margin-bottom: 0.8rem;
-padding-left: 20px;
+padding: 0 20px;
+
+background-color: white;
+color: 	#808080;
 
 }
 
 .jobRowTitle  {
   color: #111E6C;
+  font-size: 1.5rem;
 
 }
 
 .jobRowWorkPlace  {
-
+  margin: 0.5em;
 
 }
 
 .jobRowProfession {
-
+  margin: 0.5em;
 }
 
 .jobRowFooter {
 display: flex;
 flex-direction: row;
-
+justify-content: space-evenly;
 }
 
 .jobRowCounty,
 .jobRowPublished,
 .jobRowLastApply  {
+  margin: 0.5em;
+
+}
+
+.jobRowLabel  {
+
+  font-weight: 900;
 
 
 }
