@@ -1,15 +1,11 @@
-/*
-* Variables
-*/
-URL = {
-  baseUrl: "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&yrkesomradeid=1&sida=1&antalrader=10",
-  lanUrl: "http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan"
-};
+﻿
+let page = 1;
+let numberOfRows = 100;
 
 /*
 * Network calls
 */
-network = {
+let network = {
   //Fetches json data from input URL
   async fetchJson(url) {
     try {
@@ -21,24 +17,35 @@ network = {
     }
   },
 
-  async getLatestJobs() {
-    network.getLanSelectDropDown();
-    const jobs = await network.fetchJson(URL.baseUrl);
+  async getJobs(countyID, searchWord, workArea) {
+    let queryString = "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?nyckelord=" + searchWord + "&yrkesomradeid=" + workArea + "&sida=" + page + "&antalrader=" + numberOfRows;
+    if (countyID != 1000) {
+      queryString += "&lanid=" + countyID;
+    }
+    console.log("querystring: ", queryString);
+    network.getLan();
+    const jobs = await network.fetchJson(queryString);
     html.displayJSON(jobs.matchningslista.matchningdata);
   },
 
-  async getLanSelectDropDown() {
-    const Lan = await network.fetchJson(URL.lanUrl);
-    for (let lan of Lan.soklista.sokdata)
-      console.log("Län: " + lan.namn + " id: " + lan.id);
+  async getLan() {
+    const result = await network.fetchJson("http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan");
+    return result;
+  },
+
+  async getYrkesOmraden() {
+    const result = await network.fetchJson("http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden");
+    return result;
   }
 }
 
 /*
 * HTML manipulation
 */
-html = {
+let html = {
+  //Displays job json in html dom
   displayJSON(input) {
+    document.querySelector("#inputContainer").innerHTML = "";
     for (job of input) {
       let jobListing = `
       <div class="jobRow">
@@ -54,14 +61,49 @@ html = {
       </div>`;
       document.querySelector("#inputContainer").insertAdjacentHTML('afterBegin', jobListing);
     }
+  },
+  //Fills the county select dropdown menu with items
+  async populateCountySelectDropDown() {
+    const dropDownMenu = document.querySelector('#dropDownMenu');
+    var row = document.createElement("option");
+    row.textContent = "Alla län";
+    row.value = 1000;
+    dropDownMenu.appendChild(row);
+    let listOfLan = await network.getLan();
+    for (let lan of listOfLan.soklista.sokdata) {
+      var row = document.createElement("option");
+      row.textContent = lan.namn;
+      row.value = lan.id;
+      dropDownMenu.appendChild(row);
+    }
+    dropDownMenu.value = 1000;
+  },
+
+  async populateWorkAreaDropDown() {
+    const dropDownMenu = document.querySelector('#dropDownYrkesOmraden');
+    let listOfWorkAreas = await network.getYrkesOmraden()
+    for (let workArea of listOfWorkAreas.soklista.sokdata) {
+      var row = document.createElement("option");
+      row.textContent = workArea.namn;
+      row.value = workArea.id;
+      dropDownMenu.appendChild(row);
+    }
   }
 }
 
+/*
+* Event listeners
+*/
+const searchButton = document.querySelector("#getLink");
+searchButton.addEventListener('submit', function (event) {
+  event.preventDefault();
+  network.getJobs(this.dropDownMenu.value, this.linkUrl.value, this.dropDownYrkesOmraden.value);
+});
 
 /*
 * Utility functions (formatting etc)
 */
-utility = {
+let utility = {
   //Formats inputdate from json from UTC to 'en-gb'
   formatDate(input) {
     //Converts input from string to Date and then formats date as 'en-gb' (dd/mm/yyyy)
@@ -71,9 +113,9 @@ utility = {
   }
 }
 
-/*
-* Initialize page
-*/
-/*window.onload = function init() {
-  network.getLatestJobs();
-}*/
+window.onload = init();
+
+function init() {
+  html.populateCountySelectDropDown();
+  html.populateWorkAreaDropDown();
+};
