@@ -1,8 +1,7 @@
-﻿let countyID = 90;
-let searchWord = "";
-let workArea = 3;
+﻿
 let page = 1;
-let numberOfRows = 10;
+let numberOfRows = 100;
+
 /*
 * Network calls
 */
@@ -18,9 +17,12 @@ let network = {
     }
   },
 
-  async getJobs() {
-    let queryString = "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid="+countyID+"&nyckelord="+searchWord+"&yrkesomradeid="+workArea+"&sida="+page+"&antalrader="+numberOfRows;
-    console.log("getJobs "+countyID);
+  async getJobs(countyID, searchWord, workArea) {
+    let queryString = "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?nyckelord=" + searchWord + "&yrkesomradeid=" + workArea + "&sida=" + page + "&antalrader=" + numberOfRows;
+    if (countyID != 1000) {
+      queryString += "&lanid=" + countyID;
+    }
+    console.log("querystring: ", queryString);
     network.getLan();
     const jobs = await network.fetchJson(queryString);
     html.displayJSON(jobs.matchningslista.matchningdata);
@@ -28,6 +30,11 @@ let network = {
 
   async getLan() {
     const result = await network.fetchJson("http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan");
+    return result;
+  },
+
+  async getYrkesOmraden() {
+    const result = await network.fetchJson("http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden");
     return result;
   }
 }
@@ -57,7 +64,11 @@ let html = {
   },
   //Fills the county select dropdown menu with items
   async populateCountySelectDropDown() {
-    const dropDownMenu = document.querySelector('#dropDown');
+    const dropDownMenu = document.querySelector('#dropDownMenu');
+    var row = document.createElement("option");
+    row.textContent = "Alla län";
+    row.value = 1000;
+    dropDownMenu.appendChild(row);
     let listOfLan = await network.getLan();
     for (let lan of listOfLan.soklista.sokdata) {
       var row = document.createElement("option");
@@ -65,24 +76,28 @@ let html = {
       row.value = lan.id;
       dropDownMenu.appendChild(row);
     }
-    dropDownMenu.value = countyID;
+    dropDownMenu.value = 1000;
+  },
+
+  async populateWorkAreaDropDown() {
+    const dropDownMenu = document.querySelector('#dropDownYrkesOmraden');
+    let listOfWorkAreas = await network.getYrkesOmraden()
+    for (let workArea of listOfWorkAreas.soklista.sokdata) {
+      var row = document.createElement("option");
+      row.textContent = workArea.namn;
+      row.value = workArea.id;
+      dropDownMenu.appendChild(row);
+    }
   }
 }
 
 /*
 * Event listeners
 */
-const selectCountyDropDown = document.querySelector('#dropDown');
-selectCountyDropDown.addEventListener('change', function () {
-  console.log(this.value);
-  countyID = this.value;
-  network.getJobs();
-});
-
-const numberOfRowsDropDown = document.querySelector('#antal');
-numberOfRowsDropDown.addEventListener('change', function () {
-  numberOfRows = this.value;
-  network.getJobs();
+const searchButton = document.querySelector("#getLink");
+searchButton.addEventListener('submit', function (event) {
+  event.preventDefault();
+  network.getJobs(this.dropDownMenu.value, this.linkUrl.value, this.dropDownYrkesOmraden.value);
 });
 
 /*
@@ -98,9 +113,9 @@ let utility = {
   }
 }
 
-/*
-* Initialize page
-*/
-/*window.onload = function init() {
-  network.getLatestJobs();
-}*/
+window.onload = init();
+
+function init() {
+  html.populateCountySelectDropDown();
+  html.populateWorkAreaDropDown();
+};

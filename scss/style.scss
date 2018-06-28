@@ -85,7 +85,7 @@ display: flex;
 #getLink  {
 
 display: flex;
-flex-direction: inline;
+flex-direction: column;
 justify-content: center;
 min-width: 360px;
 width: 80%;
@@ -124,7 +124,7 @@ margin-top: 0.8rem;
 
 }
 
-.dropDownMenu {
+.dropDownMenus {
 font-family: $mainFontFamily;
 height: 50px;
 text-align: center;
