@@ -23,10 +23,12 @@ $textColorDarkerBlue: #111E6C;
 
 body {
   color: white;
-  background-color:#4169E1;
+  background-color:$mainBackgroundColor;
   //display: flex;
   //flex-direction: column;
   min-width: 360px;
+  max-width: 900px;
+  margin: 0 auto;
 
 
 }
@@ -97,7 +99,7 @@ input[type=text] {
   height: 50px;
   width: 60%;
   margin: 0 auto;
-  font-family: "Karla", helvetica, sans-serif;
+  font-family: $mainFontFamily;
   font-size: 1.5rem;
   text-align: center;
   border: none;
@@ -108,10 +110,10 @@ input[type=submit] {
   height: 50px;
   width: 40%;
   margin: 0 auto;
-  font-family: "Karla", helvetica, sans-serif;
+  font-family: $mainFontFamily;
   font-size: 1.5rem;
   text-align: center;
-  background-color: #111E6C;
+  background-color: $textColorDarkerBlue;
   color: white;
   border: none;
 }
@@ -135,7 +137,7 @@ min-width: 360px;
 width: 80%;
 margin: 0 auto;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-background-color: #111E6C;
+background-color: $textColorDarkerBlue;
 color: white;
 }
 
@@ -166,7 +168,7 @@ color: 	#696969;
 }
 
 .jobRowTitle  {
-  color: #111E6C;
+  color: $textColorDarkerBlue;
   font-size: 1.5rem;
 
 }
