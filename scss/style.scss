@@ -1,36 +1,19 @@
-/*CSS*/
-
-/*Google fonts:
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-font-family: 'Karla';
-*/
-
-
-$mainFontFamily: "Karla", helvetica, sans-serif;
-$mainBackgroundColor:#4169E1;
-$textColorDarkerBlue: #111E6C;
-//$textColorLighterBlue:
-//$textColorGrey:
-
+@import "_variables";
+@import "_jobRow";
+@import "_links";
 
 *  {
 
   box-sizing: border-box;
-  /*margin: 0 auto;*/
   
   }
-
 
 body {
   color: white;
   background-color:$mainBackgroundColor;
-  //display: flex;
-  //flex-direction: column;
-  min-width: 360px;
+  min-width: $minWidthMobile;
   max-width: 900px;
   margin: 0 auto;
-
-
 }
 
 h1 {
@@ -41,19 +24,6 @@ h1 {
   font-size: 3.5rem;
   margin-bottom: 75px;
   
-
-}
-
-h2{
-
-color: #111E6C;
-font-family: $mainFontFamily;
-
-}
-
-h3{
-  color: #111E6C;
-  margin: 0.3em;
 
 }
 
@@ -71,51 +41,42 @@ min-width: 160px;
 max-width: 260px;
 margin: 0 auto;
 display: flex;
-//flex-direction: inline;
-//justify-content: center;
 
 }
-
-.searchInput  {
-
-
-}
-
 
 #getLink  {
 
 display: flex;
 flex-direction: column;
 justify-content: center;
-min-width: 360px;
+min-width: $minWidthMobile;
 width: 80%;
 margin: 0 auto;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 
 }
 
 input[type=text] {
   height: 50px;
-  width: 60%;
-  margin: 0 auto;
+  width: 80%;
+  margin: 0.2em auto;
   font-family: $mainFontFamily;
   font-size: 1.5rem;
   text-align: center;
   border: none;
-  
+  box-shadow: $boxDropShadow;
 }
 
 input[type=submit] {
   height: 50px;
-  width: 40%;
-  margin: 0 auto;
+  width: 80%;
+  margin: 0.2em auto;
   font-family: $mainFontFamily;
   font-size: 1.5rem;
   text-align: center;
   background-color: $textColorDarkerBlue;
   color: white;
   border: none;
+  box-shadow: $boxDropShadow;
 }
 
 
@@ -133,14 +94,13 @@ border: none;
 display: flex;
 flex-direction: inline;
 justify-content: center;
-min-width: 360px;
+min-width: $minWidthMobile;
 width: 80%;
-margin: 0 auto;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-background-color: $textColorDarkerBlue;
+margin: 0.2em auto;
+box-shadow: $boxDropShadow;
+background-color: $textColorLighterBlue;
 color: white;
 }
-
 
 
 
@@ -150,81 +110,14 @@ color: white;
 display: flex;
 flex-direction: column;
 justify-content: left;
-min-width: 360px;
+min-width: $minWidthMobile;
 max-width: 80%;
 margin: 0 auto;
-//color: white;
 font-family: $mainFontFamily;
 
 }
 
-.jobRow {
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-margin-bottom: 0.8rem;
-padding: 0 20px;
-background-color: white;
-color: 	#696969;
-
+.nextPageButton{
+  display: none;
 }
 
-.jobRowTitle  {
-  color: $textColorDarkerBlue;
-  font-size: 1.5rem;
-
-}
-
-.jobRowWorkPlace  {
-  margin: 0.5em;
-
-}
-
-.jobRowProfession {
-  margin: 0.5em;
-}
-
-.jobRowFooter {
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-}
-
-.jobRowCounty,
-.jobRowPublished,
-.jobRowLastApply  {
-  margin: 0.5em;
-
-}
-
-.jobRowLabel  {
-
-  font-weight: 900;
-
-}
-
-/*----Links-----*/
-
-a:link {
-  color: $textColorDarkerBlue;
-  text-decoration: none;
-}
-
-a:visited {
-  color: $textColorDarkerBlue;
-}
-
-a:hover {
-  color: $textColorDarkerBlue;
-  text-decoration: underline;
-}
-
-a:active {
-  color: $textColorDarkerBlue;
-}
-
-footer{
-
-
-}
-
-
-/*----MediaQ-----*/
