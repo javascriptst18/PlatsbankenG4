@@ -9,6 +9,7 @@ font-family: 'Karla';
 $mainFontFamily: "Karla", helvetica, sans-serif;
 $mainBackgroundColor:#4169E1;
 $textColorDarkerBlue: #111E6C;
+$minWidth: 360px;
 //$textColorLighterBlue:
 //$textColorGrey:
 
@@ -26,7 +27,7 @@ body {
   background-color:$mainBackgroundColor;
   //display: flex;
   //flex-direction: column;
-  min-width: 360px;
+  min-width: $minWidth;
   max-width: 900px;
   margin: 0 auto;
 
@@ -87,7 +88,7 @@ display: flex;
 display: flex;
 flex-direction: inline;
 justify-content: center;
-min-width: 360px;
+min-width: $minWidth;
 width: 80%;
 margin: 0 auto;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -121,7 +122,7 @@ input[type=submit] {
 
 .dropDownDiv {
 margin-top: .8rem;
-min-width: 360px;
+min-width: $minWidth;
 width: 80%;
 display: flex;
 flex-direction: inline;
@@ -155,11 +156,12 @@ color: white;
   text-align: center;
   font-size: 1.5rem;
   border: none;
-  display: flex;
-  flex-direction: inline;
-  justify-content: center;
+  //display: flex;
+  //flex-direction: inline;
+  //justify-content: center;
   width: 40%;
   //margin: 0 auto;
+  
   
   
   
@@ -177,7 +179,7 @@ color: white;
 display: flex;
 flex-direction: column;
 justify-content: left;
-min-width: 360px;
+min-width: $minWidth;
 max-width: 80%;
 margin: 0 auto;
 //color: white;
@@ -248,7 +250,7 @@ a:active {
   color: $textColorDarkerBlue;
 }
 
-footer{
+footer  {
 
 
 }
