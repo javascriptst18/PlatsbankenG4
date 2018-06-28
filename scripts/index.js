@@ -42,13 +42,13 @@ html = {
     for (job of input) {
       let jobListing = `
       <div class="jobRow">
-          <h3 class="jobRowTitle">${job.annonsrubrik}</h3>
-          <p class="jobRowWorkPlace">${job.arbetsplatsnamn}</p>
-          <p class="jobRowProfession">${job.yrkesbenamning}</p>
+          <h3 class="jobRowTitle"><a target="_blank" href="${job.annonsurl}">${job.annonsrubrik}</a></h3>
+          <p class="jobRowWorkPlace"><span class="jobRowLabel">Företag:</span> ${job.arbetsplatsnamn}</p>
+          <p class="jobRowProfession"><span class="jobRowLabel">Yrke:</span> ${job.yrkesbenamning}</p>
             <div class="jobRowFooter">
-              <p class="jobRowCounty">${job.kommunnamn}</p>
-              <p class="jobRowPublished">Publicerades: ${utility.formatDate(job.publiceraddatum)}</p> 
-              <p class="jobRowLastApply">Sista ansökningsdag: ${utility.formatDate(job.sista_ansokningsdag)}</p>
+              <p class="jobRowCounty"><span class="jobRowLabel">Kommun:</span> ${job.kommunnamn}</p>
+              <p class="jobRowPublished"><span class="jobRowLabel">Publicerades:</span> ${utility.formatDate(job.publiceraddatum)}</p> 
+              <p class="jobRowLastApply"><span class="jobRowLabel">Sista ansökningsdag:</span> ${utility.formatDate(job.sista_ansokningsdag)}</p>
             </div>
           </div>
       </div>`;
@@ -74,6 +74,6 @@ utility = {
 /*
 * Initialize page
 */
-window.onload = function init() {
+/*window.onload = function init() {
   network.getLatestJobs();
-}
+}*/
