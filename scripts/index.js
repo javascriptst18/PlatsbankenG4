@@ -74,6 +74,6 @@ utility = {
 /*
 * Initialize page
 */
-window.onload = function init() {
+/*window.onload = function init() {
   network.getLatestJobs();
-}
+}*/
