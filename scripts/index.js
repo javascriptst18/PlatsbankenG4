@@ -1,11 +1,8 @@
-/*
-* Variables
-*/
-let URL = {
-  baseUrl: "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid=1&yrkesomradeid=1&sida=1&antalrader=10",
-  lanUrl: "http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan"
-};
-
+let countyID = 90;
+let searchWord = "";
+let workArea = 3;
+let page = 1;
+let numberOfRows = 10;
 /*
 * Network calls
 */
@@ -21,14 +18,16 @@ let network = {
     }
   },
 
-  async getLatestJobs() {
+  async getJobs() {
+    let queryString = "http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?lanid="+countyID+"&nyckelord="+searchWord+"&yrkesomradeid="+workArea+"&sida="+page+"&antalrader="+numberOfRows;
+    console.log("getJobs "+countyID);
     network.getLan();
-    const jobs = await network.fetchJson(URL.baseUrl);
+    const jobs = await network.fetchJson(queryString);
     html.displayJSON(jobs.matchningslista.matchningdata);
   },
 
   async getLan() {
-    const result = await network.fetchJson(URL.lanUrl);
+    const result = await network.fetchJson("http://api.arbetsformedlingen.se/af/v0/arbetsformedling/soklista/lan");
     return result;
   }
 }
@@ -39,6 +38,7 @@ let network = {
 let html = {
   //Displays job json in html dom
   displayJSON(input) {
+    document.querySelector("#inputContainer").innerHTML = "";
     for (job of input) {
       let jobListing = `
       <div class="jobRow">
@@ -65,7 +65,7 @@ let html = {
       row.value = lan.id;
       dropDownMenu.appendChild(row);
     }
-    dropDownMenu.value = 90;
+    dropDownMenu.value = countyID;
   }
 }
 
@@ -73,8 +73,16 @@ let html = {
 * Event listeners
 */
 const selectCountyDropDown = document.querySelector('#dropDown');
-selectCountyDropDown.addEventListener('change', function (target) {
+selectCountyDropDown.addEventListener('change', function () {
   console.log(this.value);
+  countyID = this.value;
+  network.getJobs();
+});
+
+const numberOfRowsDropDown = document.querySelector('#antal');
+numberOfRowsDropDown.addEventListener('change', function () {
+  numberOfRows = this.value;
+  network.getJobs();
 });
 
 /*
@@ -93,7 +101,4 @@ let utility = {
 /*
 * Initialize page
 */
-window.onload = function init() {
-  network.getLatestJobs();
   html.populateCountySelectDropDown();
-}
