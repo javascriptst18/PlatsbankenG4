@@ -1,0 +1,29 @@
+.jobRow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 0.8rem;
+    padding: 0 20px;
+    background-color: white;
+    color: 	#696969;
+    
+    &Title{
+      color: $textColorDarkerBlue;
+      font-size: 1.5rem;
+      margin: 0.3rem;
+      font-weight: bold; 
+    }
+    &WorkPlace, 
+    &Profession, 
+    &LastApply, 
+    &Published, 
+    &County{
+      margin: 0.5em;
+    }
+    &Footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      }
+      &Label{
+        font-weight: 900;
+      }
+    }
