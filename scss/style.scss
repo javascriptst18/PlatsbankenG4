@@ -7,6 +7,11 @@ font-family: 'Karla';
 
 
 $mainFontFamily: "Karla", helvetica, sans-serif;
+$mainBackgroundColor:#4169E1;
+$textColorDarkerBlue: #111E6C;
+//$textColorLighterBlue:
+//$textColorGrey:
+
 
 *  {
 
@@ -17,10 +22,13 @@ $mainFontFamily: "Karla", helvetica, sans-serif;
 
 
 body {
-color: white;
-  background-color:#4169E1;
+  color: white;
+  background-color:$mainBackgroundColor;
   //display: flex;
   //flex-direction: column;
+  min-width: 360px;
+  max-width: 900px;
+  margin: 0 auto;
 
 
 }
@@ -30,6 +38,9 @@ h1 {
   font-family: $mainFontFamily;
   color: white;
   text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 75px;
+  
 
 }
 
@@ -42,57 +53,178 @@ font-family: $mainFontFamily;
 
 h3{
   color: #111E6C;
+  margin: 0.3em;
 
 }
 
-.button {
 
-color: #111E6C;
+header{
+
+margin-top: 75px;
+margin-bottom: 75px;
+
 }
+
+.logo{
+width: 20%;
+min-width: 160px;
+max-width: 260px;
+margin: 0 auto;
+display: flex;
+//flex-direction: inline;
+//justify-content: center;
+
+}
+
+.searchInput  {
+
+
+}
+
+
+#getLink  {
+
+display: flex;
+flex-direction: inline;
+justify-content: center;
+min-width: 360px;
+width: 80%;
+margin: 0 auto;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+input[type=text] {
+  height: 50px;
+  width: 60%;
+  margin: 0 auto;
+  font-family: $mainFontFamily;
+  font-size: 1.5rem;
+  text-align: center;
+  border: none;
+  
+}
+
+input[type=submit] {
+  height: 50px;
+  width: 40%;
+  margin: 0 auto;
+  font-family: $mainFontFamily;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: $textColorDarkerBlue;
+  color: white;
+  border: none;
+}
+
+
+.dropDownDiv {
+margin-top: 0.8rem;
+
+}
+
+.dropDownMenu {
+font-family: $mainFontFamily;
+height: 50px;
+text-align: center;
+font-size: 1.5rem;
+border: none;
+display: flex;
+flex-direction: inline;
+justify-content: center;
+min-width: 360px;
+width: 80%;
+margin: 0 auto;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+background-color: $textColorDarkerBlue;
+color: white;
+}
+
+
+
+
+/*----Input from JS-----*/
 
 #inputContainer {
 display: flex;
 flex-direction: column;
+justify-content: left;
 min-width: 360px;
 max-width: 80%;
 margin: 0 auto;
-justify-content: left;
 //color: white;
 font-family: $mainFontFamily;
-
 
 }
 
 .jobRow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 margin-bottom: 0.8rem;
-padding-left: 20px;
+padding: 0 20px;
+background-color: white;
+color: 	#696969;
 
 }
 
 .jobRowTitle  {
-  color: #111E6C;
+  color: $textColorDarkerBlue;
+  font-size: 1.5rem;
 
 }
 
 .jobRowWorkPlace  {
-
+  margin: 0.5em;
 
 }
 
 .jobRowProfession {
-
+  margin: 0.5em;
 }
 
 .jobRowFooter {
 display: flex;
 flex-direction: row;
-
+justify-content: space-evenly;
 }
 
 .jobRowCounty,
 .jobRowPublished,
 .jobRowLastApply  {
+  margin: 0.5em;
+
+}
+
+.jobRowLabel  {
+
+  font-weight: 900;
+
+}
+
+/*----Links-----*/
+
+a:link {
+  color: $textColorDarkerBlue;
+  text-decoration: none;
+}
+
+a:visited {
+  color: $textColorDarkerBlue;
+}
+
+a:hover {
+  color: $textColorDarkerBlue;
+  text-decoration: underline;
+}
+
+a:active {
+  color: $textColorDarkerBlue;
+}
+
+footer{
 
 
 }
+
+
+/*----MediaQ-----*/
